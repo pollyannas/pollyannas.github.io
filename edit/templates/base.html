@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{#if doc.title}}{{ doc.title }} | {{/if}}{{ site.title }}</title>
+    <link rel="stylesheet/less" href="{{ site.baseUrl }}/assets/site.less" type="text/css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
+  </head>
+
+  <body>
+
+    <header>
+      {{#if site.image}}<img class="image" src="{{ site.image }}">{{/if}}
+      {{#if site.title}}<h1 class="title"><a href="{{ site.baseUrl }}">{{ site.title }}</a></h1>{{/if}}
+      <p class="description">{{ site.description }}</p>
+    </header>
+    <aside class="menu">
+      {{#if site.author}}
+      <div class="author">
+        {{#if site.author.image}}<img class="picture" src="{{ site.author.image }}">{{/if}}
+        <h3 class="name">{{ site.author.name }}</h3>
+      </div>
+      {{/if}}
+      {{#each site.sections}}
+      <section>
+        <a href="{{ ../site.baseUrl }}/{{ path }}">{{ title }}</a>
+      </section>
+      {{/each}}
+    </aside>
+    <main>
+      <article>
+        {{{ dynamicTemplate doc.kind }}}
+      </article>
+    </main>
+    <footer>
+
+    </footer>
+
+  </body>
+
+</html>
