@@ -1,9 +1,12 @@
 {
-  "parents"     : ["home"],
+  "parents" : [
+    "home"
+  ],
   "data"        : "",
   "kind"        : "list",
   "title"       : "blog",
-  "text"        : "",
+  "text"        : "\n# A indissociabilidade entre o aprendizado e a vida",
   "_id"         : "1a05b00b",
-  "slug"        : "26"
+  "slug"        : "26",
+  "_created_at" : 1400543653359
 }

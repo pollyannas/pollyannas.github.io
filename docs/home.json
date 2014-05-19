@@ -1,9 +1,10 @@
 {
   "parents"     : [],
   "data"        : "",
-  "kind"        : "list",
-  "title"       : "home",
-  "text"        : "\nbom dia.",
+  "kind"        : "article",
+  "title"       : "",
+  "text"        : "\nbom dia, meu nome é Pollyanna!\n\n![bom dia!](http://i.imgur.com/OVnislT.jpg)",
   "_id"         : "home",
+  "_created_at" : 1400543651893,
   "slug"        : "home"
 }
