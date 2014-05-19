@@ -28,12 +28,9 @@ header .title a:visited,
 aside.menu a,
 aside.menu a:hover,
 aside.menu a:visited,
-main article .post-title a, 
-main article .post-title a:hover,
-main article .post-title a:visited,
-main .pagination a:hover,
-main .pagination a:visited,
-main .pagination a {
+main article a, 
+main article a:hover,
+main article a:visited {
   color: inherit;
   text-decoration: none;
 }
@@ -76,13 +73,27 @@ aside.menu .description {
 
 aside.menu {
   float: left;
-  width: 25%;
+  width: 21%;
+  padding: 0 2%;
   overflow: hidden;
 }
-aside.menu .author { }
-aside.menu .author .picture { 
-  margin: 0 auto 30px auto;
-  width: 230px;
+aside.menu .author {
+  .picture { 
+    margin: 0 auto 5px auto;
+    width: 90%;
+  }
+  .name {
+    margin-top: 5px;
+  }
+}
+
+aside.menu section {
+  li {
+    font-size: 125%;
+    font-weight: bold;
+    list-style-type: bengali;
+    list-style-position: inside;
+  }
 }
 
 main {
@@ -95,13 +106,13 @@ main article {
   border: 5px solid #e8d9d0;
   clear: both;
   font-size: 90%;
-  text-transform: uppercase;
   color: #462917;
   margin: 0 0 1.5em;
   padding: 1.5em;
   img {
     display: block;
     margin: auto;
+    width: 100%;
   }
   h1 {
     color: #e55564;
