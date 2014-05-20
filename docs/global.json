@@ -7,21 +7,17 @@
   "_id"         : "global",
   "_created_at" : 1400543324145,
   "slug"        : "global",
-  "baseUrl"     : "http://fiatjaf.github.io",
+  "baseUrl"     : "http://pollyannas.github.io",
   "image"       : "http://i.imgur.com/JP7Sswt.jpg",
   "description" : "este blog é uma tentativa de expressar vivências que (re)estabelecem o contato natural do indivíduo com o seu próprio ser, com sua essência, com os demais seres e com todo o ambiente ao redor.",
   "author"      : {
-    "name"  : "Pollyanna Augusta",
+    "name"  : "Pollyanna Souza",
     "image" : "http://gravatar.com/avatar/d37c0da780a5010ce14e1de279034f56?s=250.png"
   },
   "sections" : [
     {
       "name" : "blog",
       "path" : "26"
-    },
-    {
-      "name" : "doulismo",
-      "path" : "doula"
     }
   ],
   "name" : "A indissociabilidade entre o aprendizado e a vida"
