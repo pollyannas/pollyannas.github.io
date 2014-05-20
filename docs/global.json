@@ -20,5 +20,7 @@
       "path" : "26"
     }
   ],
-  "name" : "A indissociabilidade entre o aprendizado e a vida"
+  "name"             : "A indissociabilidade entre o aprendizado e a vida",
+  "google_analytics" : "UA-47455110-1",
+  "disqus"           : "26pollyannas"
 }
