@@ -16,7 +16,10 @@
   },
   "sections" : [
     {
-      "name" : "blog",
+      "name" : "blog"
+    },
+    {
+      "name" : "Algumas histórias",
       "path" : "26"
     }
   ],
