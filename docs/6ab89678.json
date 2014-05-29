@@ -1,6 +1,6 @@
 {
   "parents" : [
-    "1a05b00b"
+    "home"
   ],
   "data"        : "",
   "kind"        : "list",
@@ -8,5 +8,5 @@
   "text"        : "",
   "_id"         : "6ab89678",
   "_created_at" : 1401298863663,
-  "slug"        : "Algumas-historias"
+  "slug"        : "Historias-inspiradoras"
 }
