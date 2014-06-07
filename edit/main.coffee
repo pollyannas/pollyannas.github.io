@@ -1,22 +1,8 @@
 React = require 'react'
-Feed = require 'feed'
 Handlebars = require 'handlebars'
-Taffy = require 'taffydb'
 TextLoad = require './textload.coffee'
 GitHub = require './github.coffee'
-
-JSON.stringifyAligned = require 'json-align'
-
-Metadata = require './processors/metadata.coffee'
-
-CommonProcessor = require './processors/common.coffee'
-Processors =
-  article: require './processors/article.coffee'
-  table: require './processors/table.coffee'
-  list: require './processors/list.coffee'
-  chart: require './processors/chart.coffee'
-  plaintext: require './processors/plaintext.coffee'
-  graph: require './processors/graph.coffee'
+Store = require './store.coffee'
 
 BaseTemplate = 'templates/base.html'
 Templates =
@@ -26,7 +12,6 @@ Templates =
     'list',
     'chart',
     'plaintext',
-    'graph',
   ]
   addresses: [
     'templates/article.html',
@@ -34,7 +19,6 @@ Templates =
     'templates/list.html',
     'templates/chart.html',
     'templates/plaintext.html',
-    'templates/graph.html',
   ]
 
 # handlebars helpers
@@ -76,162 +60,36 @@ gh.repo repo
 
 Main = React.createClass
   getInitialState: ->
-    editingDoc: 'home'
-
-  componentWillMount: ->
-    @db = Taffy.taffy()
-    @db.settings
-      template:
-        parents: ['home']
-        data: ''
-        kind: 'article'
-        title: ''
-        text: ''
-      onInsert: ->
-        if not this._id
-          this._id = "xyxxyxxx".replace /[xy]/g, (c) ->
-            r = Math.random() * 16 | 0
-            v = (if c is "x" then r else (r & 0x3 | 0x8))
-            v.toString 16
-        if not this._created_at
-          this._created_at = (new Date()).getTime()
-      cacheSize: 0
-
-    unless @db({_id: 'global'}).count()
-      @db.insert
-        _id: 'global'
-        parents: []
-        text: """
-          ---
-          baseUrl: #{location.href.split('/').slice(0, -2).join('/')}
-          title: this website
-          ---
-        """
-
-    unless @db({_id: 'home'}).count()
-      @db.insert
-        _id: 'home'
-        parents: []
-        kind: 'list'
-        title: 'home'
-        text: ''
-
-  setDocs: (docs) ->
-    Metadata.preProcess doc for doc in docs
-    @db.merge(docs, '_id', true)
-    @forceUpdate()
-
-  setTemplate: (compiled) -> @setState template: compiled
+    editingDoc: null
 
   publish: ->
-    if not @state.template
-      return false
-
-    processed = []
-    console.log 'processing docs'
-
-    # post-process and add the pure docs
-    for doc in @db().get()
-      Metadata.postProcess doc
-      
-      # clone and remove taffydb fields
-      _doc = JSON.parse JSON.stringify doc
-      delete _doc.___id
-      delete _doc.___s
-
-      processed["docs/#{_doc._id}.json"] = JSON.stringifyAligned _doc, false, 2
-
-    # recursively get the docs and add paths to them
-    goAfterTheChildrenOf = (parent, inheritedPathComponent) =>
-
-      # process the doc
-      parent = process parent
-
-      # discover path
-      if parent._id != 'home'
-        pathComponent = inheritedPathComponent + parent.slug + '/'
-      else
-        pathComponent = ''
-      parent.path = pathComponent + 'index.html'
-
-      # add it to the pathfiedDocs list
-      pathfiedDocs.push parent
-
-      # go after its children
-      q = @db({parents: {has: parent._id}})
-      if q.count()
-        for doc in q.order('order,date,_created_at').get()
-          goAfterTheChildrenOf doc, pathComponent
-
-    # the process function -- just calls the imported process methods
-    process = (doc) =>
-      children = @db({parents: {has: doc._id}}).order('order,date,_created_at').get()
-      doc = CommonProcessor doc, children
-      doc = Processors[doc.kind] doc
-      return doc
-        
-    # the render function -- just render the doc to the base template
-    render = (doc) =>
-      rendered = @state.template
-        doc: doc
-        site: site
-      return rendered
-
-    # get the site params
-    site = @db({_id: 'global'}).first()
-    site = process site
-
-    # prepare an empty list to be filled with the docs pathfied
-    pathfiedDocs = []
-    goAfterTheChildrenOf @db({_id: 'home'}).first(), ''
-
-    # render and add all docs with their paths determined
-    for doc in pathfiedDocs
-      html = render doc
-      processed[doc.path] = html
-
-    console.log processed
-    gh.deploy processed, =>
-      console.log 'deployed!'
-      @setDocs @db().get()
+    @props.store.publishTree()
 
   handleUpdateDoc: (docid, change) ->
-    @db({_id: docid}).update(change)
+    doc = @props.store.getDoc docid
+    for field, value of change
+      if value != null
+        doc[field] = value
+      else
+        delete doc[field]
+    @props.store.updateDoc doc
     @forceUpdate()
 
   handleSelectDoc: (docid) ->
     @setState editingDoc: docid
 
   handleAddSon: (son) ->
-    @db.insert(son)
+    son = @props.store.newDoc(son)
     @forceUpdate()
+    return son._id
 
   handleDeleteDoc: (docid) ->
-    # build the doc's html paths
-    htmlPaths = []
-    completePath = (doc, presentPath='index.html') ->
-      path = doc.slug + '/' + presentPath
-      if doc.parents.length == 1 and doc.parents[0] == 'home'
-        htmlPaths.push path
-        return
-      for parent in doc.parents
-        completePath parent, path
-
-    # build the function to delete all files from the set of paths
-    erase = (path, pathQueue) =>
-      if path
-        gh.deleteFile path, erase.bind @, pathQueue[0], pathQueue.slice(1)
-      else
-        # remove from the local db
-        @db({_id: docid}).remove()
-        @forceUpdate()
-
-    completePath @db(_id: docid).first()
-    erase "docs/#{docid}", htmlPaths
+    @props.store.deleteDoc docid
+    @forceUpdate()
 
   handleMovingChilds: (childid, fromid, targetid) ->
     isAncestor = (base, potentialAncestor) =>
-      doc = @db({_id: base}).first()
+      doc = @props.store.getDoc base
       if not doc.parents.length
         return false
       for parent in doc.parents
@@ -243,40 +101,44 @@ Main = React.createClass
     if isAncestor targetid, childid
       return false
     else
-      movedDoc = @db({_id: childid}).first()
+      movedDoc = @props.store.getDoc childid
       movedDoc.parents.splice movedDoc.parents.indexOf(fromid), 1
       movedDoc.parents.push targetid
-      @db.merge(movedDoc, '_id', true)
+      @props.store.updateDoc movedDoc
       @forceUpdate()
+
       return true
 
   render: ->
-    (div className: 'pure-g',
-      (aside className: 'pure-u-1-5',
+    (div className: 'pure-g-r',
+      (aside className: 'pure-u-6-24',
         (ul {},
-          (Doc
-            data: @db({_id: 'home'}).first()
+          @transferPropsTo(Doc
+            doc: @props.store.getDoc 'home'
             selected: true
             immediateParent: null
             onSelect: @handleSelectDoc
+            onDelete: @handleDeleteDoc
             onAddSon: @handleAddSon
             onMovedChild: @handleMovingChilds
-            db: @db
+          )
+        )
+        (ul {},
+          @transferPropsTo(Doc
+            doc: @props.store.getDoc 'global'
+            selected: false
+            immediateParent: null
+            onSelect: @handleSelectDoc
           )
         )
       ),
-      (main className: 'pure-u-4-5',
-        (Menu
-          showPublishButton: if @state.template then true else false
-          globalDoc: @db({_id: 'global'}).first()
+      (main className: 'pure-u-18-24',
+        @transferPropsTo(Menu
           onClickPublish: @publish
-          onGlobalDocChange: @handleUpdateDoc.bind @, 'global'
         ),
-        (DocEditable
-          data: @db({_id: @state.editingDoc}).first()
+        @transferPropsTo(DocEditable
+          doc: @props.store.getDoc @state.editingDoc
           onUpdateDocAttr: @handleUpdateDoc
-          onDelete: @handleDeleteDoc
-          db: @db
         )
       )
     )
@@ -286,9 +148,9 @@ Doc = React.createClass
     selected: @props.selected
 
   dragStart: (e) ->
-    console.log 'started dragging ' + @props.data._id
+    console.log 'started dragging ' + @props.doc._id
     e.dataTransfer.effectAllowed = 'move'
-    e.dataTransfer.setData 'docid', @props.data._id
+    e.dataTransfer.setData 'docid', @props.doc._id
     e.dataTransfer.setData 'fromid', @props.immediateParent
 
   drop: (e) ->
@@ -296,99 +158,141 @@ Doc = React.createClass
     e.stopPropagation()
     childid = e.dataTransfer.getData 'docid'
     fromid = e.dataTransfer.getData 'fromid'
-    console.log childid + ' dropped here (at ' + @props.data._id + ') from ' + fromid
-    movedOk = @props.onMovedChild childid, fromid, @props.data._id
+    console.log childid + ' dropped here (at ' + @props.doc._id + ') from ' + fromid
+    if fromid == @props.doc._id
+      console.log 'it is the same place'
+      return
+    if @props.doc._id == childid
+      console.log 'is itself'
+      return
+
+    movedOk = @props.onMovedChild childid, fromid, @props.doc._id
     if movedOk
-      @select()
+      @state.selected = false
+      @clickName()
 
   preventDefault: (e) -> e.preventDefault()
 
-  select: ->
-    @props.onSelect @props.data._id
-    @setState selected: true
+  clickDelete: ->
+    if confirm """Are you sure you want to delete "#{@props.doc.title or @props.doc._id}"?"""
+      @props.onDelete @props.doc._id
 
-  clickRetract: ->
-    @setState selected: false
+  clickName: ->
+    if @state.selected == false
+      @props.onSelect @props.doc._id
+      @setState selected: true
+
+    else if @state.selected == true
+      @props.onSelect null
+      @setState selected: false
 
   clickAdd: ->
-    @select()
-    @props.onAddSon {parents: [@props.data._id]}
+    sonid = @props.onAddSon {parents: [@props.doc._id]}
 
   render: ->
-    sons = @props.db(
-      parents:
-        has: @props.data._id
-    ).order('order,date,_created_at').get()
+    sons = @props.store.getSons(@props.doc._id)
 
     if not sons.length
       sons = [{_id: ''}]
 
-    if @props.data._id then (li {},
+    if @props.doc._id then (li {},
       (header
         onDragOver: @preventDefault
         onDrop: @drop
       ,
-        (button
-          className: 'pure-button retract'
-          onClick: @clickRetract
-        , '<'),
         (h4
-          draggable: true
+          draggable: if @props.onMovedChild then true else false
           onDragStart: @dragStart
-          onClick: @select.bind(@, false)
-          @props.data.title or @props.data._id),
+          onClick: @clickName
+          @props.doc.title or @props.doc._id),
+        (button
+          className: 'pure-button delete'
+          onClick: @clickDelete
+        , 'x') if @state.selected and sons.length == 1 and sons[0]._id == '' and @props.onDelete
         (button
           className: 'pure-button add'
           onClick: @clickAdd
-        , '+')
+        , '+') if @state.selected and @props.onAddSon
       ),
       (ul {},
-        @transferPropsTo (Doc
-          data: son
+        @transferPropsTo(Doc
+          doc: son
           selected: false
           key: son._id
-          immediateParent: @props.data._id
+          ref: son._id
+          immediateParent: @props.doc._id
         ,
           son.title or son._id) for son in sons
       ) if @state.selected
     ) else (li {})
 
 DocEditable = React.createClass
+  standardAttributes: ['parents', 'data', 'kind', 'text',
+                       'title', '_id', '_created_at',
+                       '___id', '___s']
+
+  getInitialState: ->
+    _new: ''
+
   handleChange: (attr, e) ->
     if attr == 'parents'
       value = (parent.trim() for parent in e.target.value.split(','))
     else
       value = e.target.value
 
-    change = {}
-    change[attr] = value
-    @props.onUpdateDocAttr @props.data._id, change
+    if attr != '_new'
+      change = {}
+      change[attr] = value
+      @props.onUpdateDocAttr @props.doc._id, change
 
-  confirmDelete: ->
-    if confirm "are you sure you want to delete 
-        #{@props.data.title or @props.data._id} ?"
-      @props.onDelete @props.data._id
+    else
+      @setState _new: value
+
+  handleChangeMetaAttr: (prevAttr, e) ->
+    attr = e.target.innerText
+    if prevAttr != attr and attr != '_new' or attr == '' and prevAttr == '_new'
+
+      if prevAttr == '_new'
+        value = @state._new
+        @state._new = ''
+      else
+        value = @props.doc[prevAttr]
+
+      change = {}
+      change[prevAttr] = null
+
+      if attr
+        change[attr] = value
+
+      if attr not in @standardAttributes
+        @props.onUpdateDocAttr @props.doc._id, change
+
+  componentDidUpdate: (nextProps) ->
+    for ref, component of @refs
+      node = component.getDOMNode()
+      node.innerText = if ref == '_new' then '' else ref
 
   render: ->
-    if not @props.data
+    if not @props.doc
       (article {})
     else
+      meta = {}
+      for field, value of @props.doc when field not in @standardAttributes
+        meta[field] = value
+      meta._new = @state._new
+
       (article className: 'editing',
-        (h3 {}, "editing #{@props.data._id}"),
-        (button
-          className: 'pure-button del'
-          onClick: @confirmDelete
-        , 'x') if not @props.db({parents: {has: @props.data._id}}).count()
+        (h3 {}, "editing #{@props.doc._id}"),
         (form
           className: 'pure-form pure-form-aligned'
           onSubmit: @handleSubmit
         ,
           (div className: 'pure-control-group',
-            (label htmlFor: 'kind', 'kind: ')
+            (label htmlFor: 'kind', 'kind')
             (select
               id: 'kind'
               onChange: @handleChange.bind @, 'kind'
-              value: @props.data.kind
+              value: @props.doc.kind
             ,
               (option
                 value: kind
@@ -397,46 +301,55 @@ DocEditable = React.createClass
             ),
           ),
           (div className: 'pure-control-group',
-            (label htmlFor: 'title', 'title: ')
+            (label htmlFor: 'title', 'title')
             (input
               id: 'title'
               className: 'pure-input-2-3'
               onChange: @handleChange.bind @, 'title'
-              value: @props.data.title),
+              value: @props.doc.title),
           ),
           (div className: 'pure-control-group',
-            (label {}, 'parents: ')
+            (label {}, 'parents')
             (input
               onChange: @handleChange.bind @, 'parents'
-              value: @props.data.parents.join(', ')),
+              value: @props.doc.parents.join(', ')),
+          ),
+          (div className: 'meta',
+            ((div
+              className: 'pure-control-group'
+              key: attr
+              ,
+              (label
+                contentEditable: true
+                ref: attr
+                onBlur: @handleChangeMetaAttr.bind @, attr
+              , if attr == '_new' then '' else attr)
+              (input
+                onChange: @handleChange.bind @, attr
+                value: value),
+            ) for attr, value of meta)
           ),
           (div className: 'pure-control-group',
-            (label htmlFor: 'text', 'text: ')
+            (label htmlFor: 'text', 'text')
             (textarea
               id: 'text'
               className: 'pure-input-2-3'
               onChange: @handleChange.bind @, 'text'
-              value: @props.data.text),
+              value: @props.doc.text),
           ),
           (div className: 'pure-control-group',
-            (label htmlFor: 'data', 'data: ')
+            (label htmlFor: 'data', 'data')
             (textarea
               wrap: 'off'
               id: 'data'
               className: 'pure-input-2-3'
               onChange: @handleChange.bind @, 'data'
-              value: @props.data.data),
+              value: @props.doc.data),
           ),
         )
       )
 
 Menu = React.createClass
-  handleGlobalDocChange: (e) ->
-    change =
-      text: e.target.value
-    @props.onGlobalDocChange change
-    e.preventDefault()
-
   handleClickPublish: (e) ->
     @props.onClickPublish()
     e.preventDefault()
@@ -445,25 +358,15 @@ Menu = React.createClass
     (header {},
       (div className: 'pure-g-r',
         (div className: 'pure-u-4-5',
-          (form className: 'pure-form',
-            (textarea
-              className: 'pure-input-1'
-              onChange: @handleGlobalDocChange
-              value: @props.globalDoc.text
-            )
-          ),
         ),
         (div className: 'pure-u-1-5',
           (button
             className: 'pure-button publish'
             onClick: @handleClickPublish
-          , 'Publish!') if @props.showPublishButton
+          , 'Publish!')
         )
       ),
     )
-
-# render component without any docs
-MAIN = React.renderComponent Main(), document.body
 
 # prepare docs to load
 gh.listDocs (files) ->
@@ -473,7 +376,6 @@ gh.listDocs (files) ->
     docAddresses = []
   # load docs
   TextLoad docAddresses, (docs...) ->
-    MAIN.setDocs (JSON.parse doc for doc in docs)
 
     # load templates and precompile them
     TextLoad Templates.addresses, (templates...) ->
@@ -488,4 +390,6 @@ gh.listDocs (files) ->
       # load the base template separatedly
       TextLoad BaseTemplate, (baseTemplateString) ->
         baseTemplate = Handlebars.compile baseTemplateString
-        MAIN.setTemplate baseTemplate
+
+        store = new Store gh, baseTemplate, docs.map JSON.parse
+        React.renderComponent Main(store: store), document.body
