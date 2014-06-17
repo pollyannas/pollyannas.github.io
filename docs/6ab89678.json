@@ -1,12 +1,12 @@
 {
-  "parents" : [
-    "home"
-  ],
-  "data"        : "",
-  "kind"        : "list",
-  "title"       : "Histórias inspiradoras",
-  "text"        : "\n#Histórias Inspiradoras",
-  "_id"         : "6ab89678",
-  "_created_at" : 1401298863663,
-  "slug"        : "2"
+    "parents" : [
+        "home"
+    ],
+    "data"        : "",
+    "kind"        : "list",
+    "title"       : "Histórias inspiradoras",
+    "text"        : "#Histórias inspiradoras",
+    "_id"         : "6ab89678",
+    "_created_at" : 1401298863663,
+    "slug"        : "2"
 }
