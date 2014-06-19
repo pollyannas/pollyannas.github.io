@@ -169,6 +169,8 @@ class Store
     processed = CommonProcessor JSON.parse(JSON.stringify(doc)), children
     processed.path = @paths[doc._id]
     site = CommonProcessor JSON.parse JSON.stringify @taffy(_id: 'global').first()
+    for key, value of site
+      site[key] = value if key not of site
     @template
       doc: processed
       site: site
