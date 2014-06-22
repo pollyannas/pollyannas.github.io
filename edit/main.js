@@ -132,7 +132,7 @@ BaseTemplate = 'templates/base.html';
 
 Templates = {
   names: ['article', 'table', 'list', 'chart', 'plaintext', 'frontpage'],
-  addresses: ['templates/article.html', 'templates/table.html', 'templates/list.html', 'templates/chart.html', 'templates/frontpage.html']
+  addresses: ['templates/article.html', 'templates/table.html', 'templates/list.html', 'templates/chart.html', 'templates/plaintext.html', 'templates/frontpage.html']
 };
 
 Handlebars.registerHelper('cleanPath', function(path) {

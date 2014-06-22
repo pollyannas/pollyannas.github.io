@@ -19,6 +19,7 @@ Templates =
     'templates/table.html',
     'templates/list.html',
     'templates/chart.html',
+    'templates/plaintext.html',
     'templates/frontpage.html',
   ]
 
