@@ -12,13 +12,14 @@ Templates =
     'list',
     'chart',
     'plaintext',
+    'frontpage',
   ]
   addresses: [
     'templates/article.html',
     'templates/table.html',
     'templates/list.html',
     'templates/chart.html',
-    'templates/plaintext.html',
+    'templates/frontpage.html',
   ]
 
 # handlebars helpers
