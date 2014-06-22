@@ -2,7 +2,7 @@
   {{#each sections}}
     <section style="width: {{ ../sectionWidth }}; 
                     background-image: url({{ this.image }})">
-      <a href="{{ this.title }}">
+      <a href="{{ this.url }}">{{ this.title }}</a>
     </section>
   {{/each}}
 </div>

@@ -131,8 +131,8 @@ Store = require('./store.coffee');
 BaseTemplate = 'templates/base.html';
 
 Templates = {
-  names: ['article', 'table', 'list', 'chart', 'plaintext'],
-  addresses: ['templates/article.html', 'templates/table.html', 'templates/list.html', 'templates/chart.html', 'templates/plaintext.html']
+  names: ['article', 'table', 'list', 'chart', 'plaintext', 'frontpage'],
+  addresses: ['templates/article.html', 'templates/table.html', 'templates/list.html', 'templates/chart.html', 'templates/frontpage.html']
 };
 
 Handlebars.registerHelper('cleanPath', function(path) {
@@ -376,7 +376,7 @@ Doc = React.createClass({
 });
 
 DocEditable = React.createClass({
-  standardAttributes: ['parents', 'data', 'kind', 'text', 'title', '_id', '_created_at', '___id', '___s'],
+  standardAttributes: ['parents', 'data', 'kind', 'text', 'title', 'slug', '_id', '_created_at', '___id', '___s'],
   getInitialState: function() {
     return {
       _new: ''
@@ -487,6 +487,15 @@ DocEditable = React.createClass({
         className: 'pure-input-2-3',
         onChange: this.handleChange.bind(this, 'title'),
         value: this.props.doc.title
+      })), div({
+        className: 'pure-control-group'
+      }, label({
+        htmlFor: 'slug'
+      }, 'slug'), input({
+        id: 'slug',
+        className: 'pure-input-2-3',
+        onChange: this.handleChange.bind(this, 'slug'),
+        value: this.props.doc.slug
       })), div({
         className: 'pure-control-group'
       }, label({}, 'parents'), input({
@@ -601,7 +610,7 @@ gh.listDocs(function(files) {
 });
 
 
-},{"./github.coffee":1,"./store.coffee":204,"./textload.coffee":205,"handlebars":21,"react":189}],3:[function(require,module,exports){
+},{"./github.coffee":1,"./store.coffee":205,"./textload.coffee":206,"handlebars":21,"react":189}],3:[function(require,module,exports){
 
 },{}],4:[function(require,module,exports){
 module.exports=require(3)
@@ -33597,7 +33606,8 @@ Processors = {
   table: require('./table.coffee'),
   list: require('./list.coffee'),
   chart: require('./chart.coffee'),
-  plaintext: require('./plaintext.coffee')
+  plaintext: require('./plaintext.coffee'),
+  frontpage: require('./frontpage.coffee')
 };
 
 process = function(doc, children) {
@@ -33623,14 +33633,22 @@ process = function(doc, children) {
 module.exports = process;
 
 
-},{"./article.coffee":196,"./chart.coffee":197,"./list.coffee":199,"./parsers/universal.coffee":201,"./plaintext.coffee":202,"./table.coffee":203,"marked":54}],199:[function(require,module,exports){
+},{"./article.coffee":196,"./chart.coffee":197,"./frontpage.coffee":199,"./list.coffee":200,"./parsers/universal.coffee":202,"./plaintext.coffee":203,"./table.coffee":204,"marked":54}],199:[function(require,module,exports){
+module.exports = function(doc) {
+  doc.sections = doc._data.sections;
+  doc.sectionWidth = "" + (100 / doc.sections.length) + "%";
+  return doc;
+};
+
+
+},{}],200:[function(require,module,exports){
 module.exports = function(doc) {
   doc.items = doc._data || doc.children;
   return doc;
 };
 
 
-},{}],200:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 /*
  CSV-JS - A Comma-Separated Values parser for JS
 
@@ -33939,7 +33957,7 @@ module.exports = function(doc) {
 
 })();
 
-},{}],201:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 var CSV, YAML;
 
 YAML = require('js-yaml');
@@ -33999,13 +34017,13 @@ module.exports = function(data) {
 };
 
 
-},{"./csv.js":200,"js-yaml":22}],202:[function(require,module,exports){
+},{"./csv.js":201,"js-yaml":22}],203:[function(require,module,exports){
 module.exports = function(doc) {
   return doc;
 };
 
 
-},{}],203:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 module.exports = function(doc) {
   var criteria, footSums, item, key, keys, pos, row, table, type, value, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref, _ref1, _ref2, _ref3;
   if (!Array.isArray(doc._data)) {
@@ -34085,7 +34103,7 @@ module.exports = function(doc) {
 };
 
 
-},{}],204:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 var CommonProcessor, Store, Taffy, diff, slug, yaml,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -34120,9 +34138,6 @@ Store = (function() {
         if (!this._created_at) {
           this._created_at = (new Date()).getTime();
         }
-        if (!this.slug) {
-          this.slug = this._id;
-        }
         if (!this.text) {
           this.text = '';
         }
@@ -34136,8 +34151,9 @@ Store = (function() {
           this.kind = 'article';
         }
         if (!this.parents) {
-          return this.parents = [];
+          this.parents = [];
         }
+        return this.slug = this.slug || (this.title ? slug(this.title) : this._id);
       },
       cacheSize: 0
     });
@@ -34217,7 +34233,7 @@ Store = (function() {
     _results = [];
     for (_l = 0, _len3 = differences.length; _l < _len3; _l++) {
       difference = differences[_l];
-      if ((_ref3 = difference.path) !== 'slug' && _ref3 !== 'parents') {
+      if ((_ref3 = difference.path[0]) !== 'slug' && _ref3 !== 'parents') {
         this.changeContent(editedDoc);
         _ref4 = this.taffy({
           _id: editedDoc.parents
@@ -34336,13 +34352,12 @@ Store = (function() {
     var getPathComponent;
     getPathComponent = (function(_this) {
       return function(parent) {
-        var grandparent, path, thisSlug;
+        var grandparent, path;
         grandparent = _this.taffy({
           _id: parent.parents[0]
         }).first();
-        thisSlug = parent.slug || (parent.title ? slug(parent.title) : parent._id);
         if (grandparent) {
-          path = getPathComponent(grandparent) + thisSlug + '/';
+          path = getPathComponent(grandparent) + parent.slug + '/';
         } else {
           path = '';
         }
@@ -34353,7 +34368,7 @@ Store = (function() {
   };
 
   Store.prototype.render = function(doc) {
-    var child, children, processed, site;
+    var child, children, key, processed, site, value;
     children = (function() {
       var _i, _len, _ref, _results;
       _ref = this.taffy({
@@ -34373,6 +34388,12 @@ Store = (function() {
     site = CommonProcessor(JSON.parse(JSON.stringify(this.taffy({
       _id: 'global'
     }).first())));
+    for (key in site) {
+      value = site[key];
+      if (!(key in site)) {
+        site[key] = value;
+      }
+    }
     return this.template({
       doc: processed,
       site: site
@@ -34403,7 +34424,7 @@ Store = (function() {
 module.exports = Store;
 
 
-},{"./processors/common.coffee":198,"deep-diff":6,"js-yaml":22,"json-align":53,"slug":191,"taffydb":195}],205:[function(require,module,exports){
+},{"./processors/common.coffee":198,"deep-diff":6,"js-yaml":22,"json-align":53,"slug":191,"taffydb":195}],206:[function(require,module,exports){
 var TextLoad, req;
 
 req = require('superagent');
