@@ -12,6 +12,7 @@ Processors =
   list: require './list.coffee'
   chart: require './chart.coffee'
   plaintext: require './plaintext.coffee'
+  frontpage: require './frontpage.coffee'
 
 process = (doc, children) ->
   # clone

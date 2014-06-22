@@ -24,19 +24,6 @@
       {{#if site.name}}<h1 class="title"><a href="{{ site.baseUrl }}">{{ site.name}}</a></h1>{{/if}}
       <p class="description">{{ site.description }}</p>
     </header>
-    <aside class="menu">
-      {{#if site.author}}
-      <div class="author">
-        {{#if site.author.image}}<img class="picture" src="{{ site.author.image }}">{{/if}}
-        <h3 class="name">{{ site.author.name }}</h3>
-      </div>
-      {{/if}}
-      {{#each site.sections}}
-      <section>
-        <li><a href="{{ ../site.baseUrl }}/{{ path }}">{{ name }}</a></li>
-      </section>
-      {{/each}}
-    </aside>
     <main>
       <article>
         {{{ dynamicTemplate doc.kind }}}
