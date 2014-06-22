@@ -1,10 +1,10 @@
 {
-  "parents"     : [],
-  "data"        : "",
-  "kind"        : "article",
-  "title"       : "",
-  "text"        : "\n",
-  "_id"         : "home",
-  "_created_at" : 1400543651893,
-  "slug"        : "home"
+    "parents"     : [],
+    "data"        : "{\n  \"sections\": [\n    {\n      \"image\": \"\",\n      \"title\": \"blog\",\n      \"url\": \"/26\"\n    },\n    {\n      \"image\": \"\",\n      \"title\": \"histórias inspiradoras\",\n      \"url\": \"/2\"\n    }\n  ]\n}",
+    "kind"        : "frontpage",
+    "title"       : "",
+    "text"        : "\n",
+    "_id"         : "home",
+    "_created_at" : 1400543651893,
+    "slug"        : "home"
 }
