@@ -157,7 +157,7 @@ class Store
       grandparent = @taffy({_id: parent.parents[0]}).first()
 
       if grandparent
-        path = getPathComponent(grandparent) + thisSlug + '/'
+        path = getPathComponent(grandparent) + parent.slug + '/'
       else
         path = ''
       return path
