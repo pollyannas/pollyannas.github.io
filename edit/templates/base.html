@@ -25,7 +25,7 @@
       <p class="description">{{ site.description }}</p>
     </header>
     <main>
-      <article>
+      <article id="{{ doc._id }}">
         {{{ dynamicTemplate doc.kind }}}
       </article>
     </main>
