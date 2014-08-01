@@ -131,8 +131,8 @@ Store = require('./store.coffee');
 BaseTemplate = 'templates/base.html';
 
 Templates = {
-  names: ['article', 'table', 'list', 'chart', 'plaintext', 'frontpage'],
-  addresses: ['templates/article.html', 'templates/table.html', 'templates/list.html', 'templates/chart.html', 'templates/plaintext.html', 'templates/frontpage.html']
+  names: ['article', 'table', 'list', 'chart', 'plaintext'],
+  addresses: ['templates/article.html', 'templates/table.html', 'templates/list.html', 'templates/chart.html', 'templates/plaintext.html']
 };
 
 Handlebars.registerHelper('cleanPath', function(path) {
@@ -610,7 +610,7 @@ gh.listDocs(function(files) {
 });
 
 
-},{"./github.coffee":1,"./store.coffee":205,"./textload.coffee":206,"handlebars":21,"react":189}],3:[function(require,module,exports){
+},{"./github.coffee":1,"./store.coffee":204,"./textload.coffee":205,"handlebars":21,"react":189}],3:[function(require,module,exports){
 
 },{}],4:[function(require,module,exports){
 module.exports=require(3)
@@ -33606,8 +33606,7 @@ Processors = {
   table: require('./table.coffee'),
   list: require('./list.coffee'),
   chart: require('./chart.coffee'),
-  plaintext: require('./plaintext.coffee'),
-  frontpage: require('./frontpage.coffee')
+  plaintext: require('./plaintext.coffee')
 };
 
 process = function(doc, children) {
@@ -33633,22 +33632,14 @@ process = function(doc, children) {
 module.exports = process;
 
 
-},{"./article.coffee":196,"./chart.coffee":197,"./frontpage.coffee":199,"./list.coffee":200,"./parsers/universal.coffee":202,"./plaintext.coffee":203,"./table.coffee":204,"marked":54}],199:[function(require,module,exports){
-module.exports = function(doc) {
-  doc.sections = doc._data.sections;
-  doc.sectionWidth = "" + (100 / doc.sections.length) + "%";
-  return doc;
-};
-
-
-},{}],200:[function(require,module,exports){
+},{"./article.coffee":196,"./chart.coffee":197,"./list.coffee":199,"./parsers/universal.coffee":201,"./plaintext.coffee":202,"./table.coffee":203,"marked":54}],199:[function(require,module,exports){
 module.exports = function(doc) {
   doc.items = doc._data || doc.children;
   return doc;
 };
 
 
-},{}],201:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 /*
  CSV-JS - A Comma-Separated Values parser for JS
 
@@ -33957,7 +33948,7 @@ module.exports = function(doc) {
 
 })();
 
-},{}],202:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 var CSV, YAML;
 
 YAML = require('js-yaml');
@@ -34017,13 +34008,13 @@ module.exports = function(data) {
 };
 
 
-},{"./csv.js":201,"js-yaml":22}],203:[function(require,module,exports){
+},{"./csv.js":200,"js-yaml":22}],202:[function(require,module,exports){
 module.exports = function(doc) {
   return doc;
 };
 
 
-},{}],204:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 module.exports = function(doc) {
   var criteria, footSums, item, key, keys, pos, row, table, type, value, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref, _ref1, _ref2, _ref3;
   if (!Array.isArray(doc._data)) {
@@ -34103,7 +34094,7 @@ module.exports = function(doc) {
 };
 
 
-},{}],205:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 var CommonProcessor, Store, Taffy, diff, slug, yaml,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -34424,7 +34415,7 @@ Store = (function() {
 module.exports = Store;
 
 
-},{"./processors/common.coffee":198,"deep-diff":6,"js-yaml":22,"json-align":53,"slug":191,"taffydb":195}],206:[function(require,module,exports){
+},{"./processors/common.coffee":198,"deep-diff":6,"js-yaml":22,"json-align":53,"slug":191,"taffydb":195}],205:[function(require,module,exports){
 var TextLoad, req;
 
 req = require('superagent');
