@@ -79,6 +79,11 @@ GitHub = function(user) {
       })(this));
     },
     deploy: function(tree, cb) {
+      var pass;
+      pass = prompt("Password for the user " + user + ":");
+      if (pass) {
+        this.password(pass);
+      }
       return req.post(this.base + ("/repos/" + this.user + "/" + this.repo + "/git/trees")).set(this.headers).send({
         tree: tree
       }).end((function(_this) {
@@ -114,7 +119,7 @@ module.exports = GitHub;
 
 
 },{"superagent":192}],2:[function(require,module,exports){
-var BaseTemplate, Doc, DocEditable, GitHub, Handlebars, Main, Menu, React, Store, Templates, TextLoad, a, article, aside, b, button, div, form, gh, gh_data, h1, h2, h3, h4, header, i, input, label, li, main, option, pass, repo, select, small, span, table, tbody, td, textarea, tfoot, th, thead, tr, ul, user, _ref,
+var BaseTemplate, Doc, DocEditable, GitHub, Handlebars, Main, Menu, React, Store, Templates, TextLoad, a, article, aside, b, button, div, form, gh, gh_data, h1, h2, h3, h4, header, i, input, label, li, main, option, repo, select, small, span, table, tbody, td, textarea, tfoot, th, thead, tr, ul, user, _ref,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; },
   __slice = [].slice;
 
@@ -164,12 +169,6 @@ if (gh_data) {
 }
 
 gh = new GitHub(user);
-
-pass = prompt("Password for the user " + user + ":");
-
-if (pass) {
-  gh.password(pass);
-}
 
 gh.repo(repo);
 
@@ -33611,7 +33610,7 @@ Processors = {
 };
 
 process = function(doc, children) {
-  var child;
+  var child, criteria;
   doc = JSON.parse(JSON.stringify(doc));
   doc.html = marked(doc.text);
   if (children) {
@@ -33624,6 +33623,21 @@ process = function(doc, children) {
       }
       return _results;
     })();
+    criteria = doc.sortBy || doc.orderBy || '_created_at';
+    if (criteria) {
+      doc.children = doc.children.sort(function(a, b) {
+        if (a[criteria] < b[criteria]) {
+          return -1;
+        }
+        if (a[criteria] > b[criteria]) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+    if (doc.reverse || doc.reversed) {
+      doc.children.reverse();
+    }
   }
   doc._data = JSON.parse(JSON.stringify(parse(doc.data)));
   doc = Processors[doc.kind](doc);
@@ -34078,7 +34092,7 @@ module.exports = function(doc) {
   }
   criteria = doc.sortBy || doc.orderBy;
   if (criteria) {
-    pos = table.head(indexOf(criteria));
+    pos = table.head.indexOf(criteria);
     if (pos !== -1) {
       table.body = table.body.sort(function(a, b) {
         if (a[pos] < b[pos]) {
@@ -34090,6 +34104,9 @@ module.exports = function(doc) {
         return 0;
       });
     }
+  }
+  if (doc.reverse || doc.reversed) {
+    doc.reverse();
   }
   if (table.foot) {
     _ref3 = table.head;

@@ -25,6 +25,18 @@ process = (doc, children) ->
   if children
     doc.children = (process child for child in children)
 
+    # sort the children according to some criteria
+    criteria = doc.sortBy or doc.orderBy or '_created_at'
+    if criteria
+      doc.children = doc.children.sort (a, b) ->
+        return -1 if a[criteria] < b[criteria]
+        return 1 if a[criteria] > b[criteria]
+        return 0
+
+    # reverse or not
+    if doc.reverse or doc.reversed
+      doc.children.reverse()
+
   # process the data
   doc._data = JSON.parse JSON.stringify parse doc.data
 

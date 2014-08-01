@@ -54,10 +54,6 @@ else
   console.log "will connect to the repo #{user}/#{repo}"
 
 gh = new GitHub user
-pass = prompt "Password for the user #{user}:"
-if pass
-  gh.password pass
-
 gh.repo repo
 
 Main = React.createClass
