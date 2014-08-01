@@ -67,6 +67,11 @@ GitHub = (user) ->
          cb res.body.tree
 
   deploy: (tree, cb) ->
+    # ask for password just before deploying
+    pass = prompt "Password for the user #{user}:"
+    if pass
+      @password pass
+
     # post new tree
     req.post(@base + "/repos/#{@user}/#{@repo}/git/trees")
        .set(@headers)
