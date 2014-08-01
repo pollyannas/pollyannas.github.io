@@ -50,12 +50,16 @@ module.exports = (doc) ->
   # sort the list according to some criteria
   criteria = doc.sortBy or doc.orderBy
   if criteria
-    pos = table.head indexOf criteria
+    pos = table.head.indexOf criteria
     if pos isnt -1
       table.body = table.body.sort (a, b) ->
         return -1 if a[pos] < b[pos]
         return 1 if a[pos] > b[pos]
         return 0
+
+  # reverse or not
+  if doc.reverse or doc.reversed
+    doc.reverse()
 
   # add the foot to the table in the correct order
   if table.foot
