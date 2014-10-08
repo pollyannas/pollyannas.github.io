@@ -1,5 +1,5 @@
 ---
-data:
+sort: -date
 title: Doula
 ---
 
