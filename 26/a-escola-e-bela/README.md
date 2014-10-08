@@ -3,6 +3,8 @@ date: 2014-07-12
 title: 'A Escola É Bela'
 ---
 
+# A Escola É Bela
+
 Não. Este não será um post que ressaltará alguns pontos positivos da escola tradicional, como você pode estar pensando. É a continuação da história, que para mim é muito bela e significativa, da minha busca pela compreensão sobre o aprendizado humano, levando especialmente em consideração a infância -- e que não me possibilita ver pontos positivos merecedores de destaque nesse tipo de escolarização.
 
 Hoje vou contar sobre um blog espetacular que conheci em outubro do ano passado. Seu nome, que me deixou supresa no primeiro momento, é <b>"A Escola É Bela"</b>.  O que intriga, à primeira vista, é o fato de se tratar de um blog sobre uma experiência muito bem sucedida de aprendizado doméstico. Como poderia a autora do blog dizer que a Escola É Bela e não deixar seu filho neste ambiente? Para não deixar dúvidas, Isabel  <a href=http://escolabela.wordpress.com/2008/10/21/educacao-e-areas-afins/> escreve </a>:

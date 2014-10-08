@@ -3,6 +3,8 @@ date: 2014-09-09
 title: 'Como as crianças aprendem'
 ---
 
+# Como as crianças aprendem
+
 Depois de ler o blog da Isabel, “<a href=pollyannas.github.io/26/a-escola-e-bela>A escola é Bela </a>” e ter ainda mais certeza do que queria para a educação de meus filhos e de quaisquer crianças com quem eu tivesse algum contato, eu comecei a ler os livros do autor que é citado em muitos de seus posts: <a href=http://www.johnholtgws.com/> John Holt </a>.
 
 Verifiquei meus e-mails agora a pouco, para ser mais precisa em meus relatos, e vi que no dia 8 de novembro de 2013 falei com o Giovanni sobre meu interesse em comprar naquele dia, no caminho para sua casa, um ou dois dos livros do autor. Inacreditavelmente fui presenteada por ele com o livro “como as crianças aprendem” neste mesmo dia (ou talvez tenha sido na semana seguinte, o que não torna nada menos impressionante, já que ele fez o pedido pela internet e demoraria algum tempo para chegar).

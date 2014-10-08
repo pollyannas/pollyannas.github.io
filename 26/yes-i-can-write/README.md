@@ -1,7 +1,9 @@
 ---
 date: 2014-08-06
-title: I'm unschooled. Yes, I can write. (Eu pratico Unschooling. Sim, eu sei escrever.)
+title: I'm unschooled. Yes, I can write.
 ---
+
+# I'm unschooled. Yes, I can write. (Eu pratico Unschooling. Sim, eu sei escrever.)
 
   Até então, eu só tinha procurado leituras relacionadas ao entendimento do aprendizado a partir de professores e pais, e ainda não tinha me dedicado ao ponto de vista das crianças e jovens sobre educação em liberdade, embora eles sempre tenham sido o centro de meus pensamentos. Não me lembro extamente como, mas um tempo depois de encontrar o blog da Isabel, <a href=http://pollyannas.github.io/26/a-escola-e-bela/> A Escola é Bela </a> , me deparei com outros escritos sensacionais, de uma jovem, Idzie Desmarais, que não frequenta a escola, e aprende vivendo ou vive aprendendo. Ela tem várias publicações interessantes, algumas das quais pretendo traduzir no futuro, mas, por ora, fica o <a href=http://yes-i-can-write.blogspot.ca/p/new-to-this-blog-new-to-unschooling.html> post</a> que ela convida à leitura antes que seus leitores percorram o blog.
  
