@@ -1,6 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Niconne|Lusitana);
 @import url(http://fonts.googleapis.com/css?family=Vollkorn);
-
 html {
   overflow: scroll;
   font-size: 62.5%;
@@ -16,25 +15,22 @@ body {
   position: relative;
   width: 1000px;
 }
-* { box-sizing: border-box }
+* {
+  box-sizing: border-box;
+}
 blockquote {
   border-left: 2em solid #e8d9d0;
   margin-left: 0;
   padding-left: 1em;
 }
-
 header .title a,
 header .title a:hover,
 header .title a:visited,
-aside.menu a,
-aside.menu a:hover,
-aside.menu a:visited,
-main article a, 
-main article a:hover,
-main article a:visited {
+main a,
+main a:hover,
+main a:visited {
   color: inherit;
-  }
-
+}
 header {
   margin: 50px auto 20px;
   position: relative;
@@ -44,12 +40,6 @@ header {
   background-repeat: no-repeat;
   background-position: center bottom;
   padding-bottom: 57px;
-}
-header .image {
-  display: block;
-  float: none;
-  margin: 0 auto 30px auto;
-  width: 200px;
 }
 header .title,
 header .title a {
@@ -61,46 +51,58 @@ header .title a {
   text-align: center;
   text-decoration: none;
 }
-header .author {
-  display: none;
-}
-
 header .description {
   text-align: center;
-  color: rgb(137, 146, 123);
+  color: #89927b;
 }
-
-main {
+main section.breadcrumb ul {
+  list-style: none;
+}
+main section.breadcrumb li {
+  display: inline-block;
+}
+main section.breadcrumb li:before {
+  content: ">\00a0";
+  padding: 0 5px;
+}
+main section.breadcrumb a:not(:hover) {
+  text-decoration: none;
+}
+main section.text {
+  width: 100%;
+  font-size: 110%;
+  color: #333;
+}
+main section.text img {
+  display: block;
+  margin: auto;
   width: 100%;
 }
-main article {
-  min-height: 700px;
-  background: #fff;
-  border: 5px solid #e8d9d0;
-  clear: both;
-  font-size: 112%;
-  color: #462917;
-  margin: 0 0 1.5em;
-  padding: 1.5em;
-  img {
-    display: block;
-    margin: auto;
-    width: 100%;
-  }
-  h1 {
-    color: #e55564;
-    font-family: 'Niconne', cursive;
-    font-weight: normal;
-    font-size: 32px;
-    margin: 0;
-    text-decoration: none;
-  }
-  p {
-    margin-bottom: 1.5em
-  }
+main section.text h1 {
+  color: #e55564;
+  font-family: 'Niconne', cursive;
+  font-weight: normal;
+  font-size: 46px;
+  margin: 0;
+  text-decoration: none;
+  text-align: center;
 }
-main article a,
-main article a:hover,
-main article a:visited {
+main section.text p {
+  margin-bottom: 1.5em;
+}
+main section.text a,
+main section.text a:hover,
+main section.text a:visited {
   color: inherit;
+}
+main section.children ul {
+  list-style: hiragana;
+}
+main section.children li a {
+  font-size: 1.4em;
+  color: #e55564;
+  text-decoration: none;
+}
+main section.children li a:hover {
+  text-decoration: underline;
 }
