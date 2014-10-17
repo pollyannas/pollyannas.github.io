@@ -2,6 +2,7 @@
 date: 2014-10-15
 title: aos-professores
 ---
+# Aos professores
 
 Como você se sentiria se apenas as pessoas realmente interessadas frequentassem suas aulas sobre determinado assunto? Como acha que poderia ser? O que vocês poderiam aprender juntos partindo do pressuposto do interesse compartilhado? Que tipo de relacionamento você poderia ter com seus alunos? Que tipo de avaliação você poderia fazer do aprendizado deles?
 
