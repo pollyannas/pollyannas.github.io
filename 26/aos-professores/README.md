@@ -1,6 +1,6 @@
 ---
 date: 2014-10-15
-title: aos-professores
+title: Aos Professores
 ---
 # Aos professores
 
