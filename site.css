@@ -55,6 +55,9 @@ header .description {
   text-align: center;
   color: #89927b;
 }
+header .author {
+  display: none;
+}
 main section.breadcrumb ul {
   list-style: none;
 }
@@ -105,4 +108,7 @@ main section.children li a {
 }
 main section.children li a:hover {
   text-decoration: underline;
+}
+main time {
+  display: none;
 }
