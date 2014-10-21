@@ -81,6 +81,10 @@ main section.text img {
   margin: auto;
   width: 100%;
 }
+main section.text iframe {
+  display: block;
+  margin: auto;
+}
 main section.text h1 {
   color: #e55564;
   font-family: 'Niconne', cursive;
