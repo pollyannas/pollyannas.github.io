@@ -1,5 +1,6 @@
 ---
-title: ser-e-vir-a-ser
+title: Ser e Vir a Ser
+date: 2014-10-21
 ---
 
 #Ser e Vir a Ser
@@ -18,17 +19,12 @@ Para garantir seu lugar pedimos que faça uma inscrição <a href=http://goo.gl/
 
 Quanto à contribuição, caso você possa fazê-la, há várias maneiras possíveis:
 
--<b>Transferência bancária:</b>
-Santander: Pollyanna Rodrigues| 3476 | 713063583
-Banco do Brasil: Pollyanna Rodrigues| 3883-0 | 16.212-4
-
--<b>Pessoalmente antes do evento:</b>
-Me envie um e-mail no polle626@gmail.com e marque de encontrar comigo.
-
--<b> Em um piquenique logo antes do evento </b>
-
--<b> Pessoalmente no momento do evento</b>
-Só me avise, de alguma forma, que irá fazê-lo, para que eu vá contabilizando.
+  * **Transferência bancária:**
+    * Santander: Pollyanna Rodrigues| 3476 | 713063583
+    * Banco do Brasil: Pollyanna Rodrigues| 3883-0 | 16.212-4;
+  * **Pessoalmente antes do evento** (me envie um e-mail no polle626@gmail.com e marque de encontrar comigo);
+  * **Em um piquenique logo antes do evento;**
+  * **Pessoalmente no momento do evento** (só me avise, de alguma forma, que irá fazê-lo, para que eu vá contabilizando).
 
 Abaixo estão mais algumas informações sobre o filme, o trailer e o cartaz do evento.
 
@@ -36,7 +32,7 @@ Abaixo estão mais algumas informações sobre o filme, o trailer e o cartaz do 
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/lpzhUhAiOhw" frameborder="0" allowfullscreen></iframe>
 
-[Imgur](http://i.imgur.com/rKLall4.jpg)
+<a href="http://i.imgur.com/rKLall4.jpg"><img src="http://i.imgur.com/nXfYf4l.jpg"></a>
 
 Espero que goste!
 
