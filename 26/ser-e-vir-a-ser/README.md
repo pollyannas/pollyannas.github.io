@@ -32,7 +32,7 @@ Abaixo estão mais algumas informações sobre o filme, o trailer e o cartaz do 
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/lpzhUhAiOhw" frameborder="0" allowfullscreen></iframe>
 
-<a href="http://i.imgur.com/rKLall4.jpg"><img src="http://i.imgur.com/nXfYf4l.jpg"></a>
+<a href="http://i.imgur.com/rKLall4.jpg"><img style="width: 700px" src="http://i.imgur.com/nXfYf4l.jpg"></a>
 
 Espero que goste!
 
