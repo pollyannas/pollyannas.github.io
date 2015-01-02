@@ -1,9 +1,9 @@
 ---
 date: 2014-09-29T14:10:12.783Z
-title: 'como decidi (senti que uma das minhas missões era) ser doula'
+title: 'Como decidi (senti que uma das minhas missões era) ser doula'
 ---
 
-#como decidi (senti que uma das minhas missões era) ser doula
+#Como decidi (senti que uma das minhas missões era) ser doula
 
 começo a escrever este texto e a primeira palavra que me vem à mente é "crianças". fecho os olhos agora e vejo aquele pequeno ser correndo em um campo aberto com os cabelos ao vento e um sorriso transbordando felicidade. meus olhos se enchem de lágrimas porque eu amo as crianças. e foi por(para) elas que descobri o caminho que eu deveria seguir.
 
