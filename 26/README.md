@@ -1,5 +1,5 @@
 ---
-title: blog
+title: A indissociabilidade entre o aprendizado e a vida
 sort: -date
 ---
 
