@@ -1,5 +1,5 @@
 ---
-title: o-curso-de-doula
+title: O Curso de Doula ou O Encontro com a Perfeição da Vida
 date: 2014-10-30
 ---
 
