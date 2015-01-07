@@ -4,7 +4,7 @@ date: 2014-08-10
 ---
 
 #Agradecimento Genuíno
-[este relato nos foi enviado por um anônimo]
+[o autor deste relato prefere permanecer anônimo]
 
 "enquanto eu fuçava a máquina de operações automáticas de uma agência do banco itaú, ao meu lado, à frente de uma outra máquina igual à minha, uma, senhorita daquelas com colete laranja, explicava repetidamente a um senhor com o dobro da idade dela que não era possível saber uma certa coisa ali, mas que ele deveria procurar um dos operadores humanos, atrás da fila embaixo da placa onde se lia "caixas".
 
