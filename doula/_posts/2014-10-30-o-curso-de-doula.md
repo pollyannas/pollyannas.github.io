@@ -1,0 +1,20 @@
+---
+title: O Curso de Doula ou O Encontro com a Perfeição da Vida
+date: 2014-10-30
+---
+
+#O Curso de Doula ou O Encontro com a Perfeição da Vida
+
+Como eu dizia no post anterior, eis que uma luz me mostrou a ocupação de doula, pela qual me interessei logo de cara, sem saber ao certo do que se tratava. Ao ver mais a fundo do que se tratava percebi muitas similaridades com tudo o que eu naturalmente tenho vontade de fazer o tempo todo.
+
+Comecei a procurar sobre doulas em Belo Horizonte a fim de saber qual poderia ser o caminho a seguir. Encontrei o site do <a href=www.maternidadeativa.com.br> GAMA </a>, que à época até tinha um curso marcado para Belo Horizonte, mas acabou sendo cancelado. Li todos os relatos de parto lá expostos e todos os artigos escritos pela Ana Crisitina Duarte, comecei a ler o livro Parto Ativo. Achei informações sobre doulas comunitárias, entrei em contato com doulas, instituições e grupos de gestantes. Encontrei o site da <a href= http://www.kalubrum.com.br/> </a> Kalu Brum. Fiquei encantada pelas histórias de parto contadas através de fotos e escritos maravilhosos e lhe enviei um e-mail. Recebi uma resposta carinhosa que me deixou muito feliz.
+
+Encontrei o grupo <a href= http://ishtarbh.blogspot.com.br/> Ishtar - BH </a> e comecei a fazer parte da lista do grupo parto ativo. Encontrei pessoas maravilhosas nesse ambiente acolhedor e sou grata a cada uma das mulheres que me servem de inspiração. O tempo foi passando e vi que não conseguiria fazer o curso em BH, então decidi ir para São Paulo. Demorei alguns meses até me matricular de fato, mas o fiz no começo do ano de 2014, 30 de janeiro (aniversário do Jorge, sobrinho do meu namorado), para ser mais específica.
+
+Fui a um encontro do Ishtar com o Giovanni e conheci pessoalmente a linda doula que é minha xará e uma grande inspiração - que me deu um abraço em um momento que talvez meus olhos pedissem e demonstrou ter sensibilidade incrível. Também conheci neste dia a Helena Villas Bôas, mais uma linda doula que tem um sorriso maravilhoso, tranquilizador e uma energia inexplicavelmente boa. Vi um filme maravilhoso - <a href=orgasmicbirth.com> Orgasmic Birth </a> e peguei um dos livros que estavam disponíveis para continuar aprendendo. Fui lendo tudo o que as mulheres escreviam na lista e fiquei conhecendo pessoas fantásticas, cito especialmente a Letícia Duarte, com quem tenho uma conexão incrível!
+
+Comecei a ler o blog da <a href= estudamelania.blogspot.com.br> Dra. Melania Amorim </a> e li alguns textos do site da <a href= www.cursoparagestantes.com.br> Vitória Pamplona </a>. Recebi um e-mail com alguns textos que recomendava-se que fossem lidos antes das aulas e os li mais de duas vezes.
+
+Fui para São Paulo com meu grande companheiro e incentivador para fazer o curso do GAMA. Foram dias cansativos, de trabalho intenso, mas, sobretudo, de muito amor, de muita vida. Foram dias de encontros muitíssimos especiais com pessoas que me ensinaram MUITO, mesmo que com conversas curtinhas. Foram dias de troca de energia e de sincronicidade, de entrega, de sinceridade. Foram dias muito, muito, muito importantes para minha vida. Aproveito para agradecer a cada um(a) com quem tive contato nestes dias, mesmo que o contato tenha sido através de olhares sutis, ou de apenas desejos sinceros de bom dia. Obrigada.
+
+Revendo tudo isso, só consigo pensar, novamente, que amo crianças. Sempre as observei muito e sempre me senti muito bem com elas. Amo pessoas - cada uma em sua particularidade. Estar com elas em momentos singulares de suas vidas é sempre maravilhoso. Amo a vida em todas as suas expressões e fico encantada quando descubro, mesmo que um pouquinho, sobre o funcionamento de pequenas partes dela. Famílias gestando e nascendo representam todo esse amor do qual eu falei e me emocionam de uma maneira inexplicável. Poder estar ao seu lado, sendo praticamente invisível e cuidando para que sintam, a partir de gestos sutis, que a vida é perfeita - não poderia ser ocupação mais gratificante para mim.

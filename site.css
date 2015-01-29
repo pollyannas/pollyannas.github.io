@@ -1,0 +1,131 @@
+@import url(http://fonts.googleapis.com/css?family=Niconne|Lusitana);
+@import url(http://fonts.googleapis.com/css?family=Vollkorn);
+html {
+  overflow: scroll;
+  font-size: 62.5%;
+}
+body {
+  background-color: #f8f4ee;
+  color: grey;
+  font-family: 'Vollkorn', serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  margin: 0 auto;
+  position: relative;
+  width: 1000px;
+}
+* {
+  box-sizing: border-box;
+}
+blockquote {
+  border-left: 2em solid #e8d9d0;
+  margin-left: 0;
+  padding-left: 1em;
+}
+header .title a,
+header .title a:hover,
+header .title a:visited,
+a,
+a:hover,
+a:visited {
+  color: inherit;
+}
+header {
+  text-align: center;
+  margin: 50px auto 20px;
+  position: relative;
+  z-index: 50;
+  width: 900px;
+  background-image: url(/assets/vines.png);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  padding-bottom: 57px;
+}
+header .title,
+header .title a {
+  color: #e55564;
+  font-family: 'Niconne', cursive;
+  font-weight: normal;
+  font-size: 190%;
+  line-height: 90%;
+  text-align: center;
+  text-decoration: none;
+}
+header .description {
+  text-align: center;
+  color: #89927b;
+}
+header .author {
+  display: none;
+}
+header .sections {
+  margin: 10px 3px;
+  font-family: Times;
+}
+header .sections a {
+  padding: 0 9.6px;
+  border-color: #1F9A44;
+  color: #1F9A44;
+}
+header .sections a:hover { border-color: #67BA80; color: #67BA80 }
+.breadcrumb ul {
+  list-style: none;
+}
+.breadcrumb li {
+  display: inline-block;
+}
+.breadcrumb li:before {
+  content: ">\00a0";
+  padding: 0 5px;
+}
+.breadcrumb a:not(:hover) {
+  text-decoration: none;
+}
+.text {
+  width: 100%;
+  font-size: 110%;
+  color: #333;
+}
+.text img {
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+.text iframe {
+  display: block;
+  margin: auto;
+}
+.text h1 {
+  color: #e55564;
+  font-family: 'Niconne', cursive;
+  font-weight: normal;
+  font-size: 46px;
+  margin: 0;
+  text-decoration: none;
+  text-align: center;
+}
+.text p {
+  margin-bottom: 1.5em;
+}
+.text a,
+.text a:hover,
+.text a:visited {
+  color: inherit;
+}
+ul.children {
+  list-style: hiragana;
+}
+.children li a {
+  font-size: 1.4em;
+  color: #e55564;
+  text-decoration: none;
+}
+.children li a:hover {
+  text-decoration: underline;
+}
+time {
+  display: none;
+}
+
+.rss { float: right }

@@ -1,0 +1,34 @@
+# Site settings
+title: Pollyanna Souza
+description: não há considerações gerais a fazer, está tudo aí
+mail: polle626@gmail.com
+sections:
+  - title: A indissociabilidade entre o aprendizado e a vida
+    url: '26'
+  - title: Doula
+    url: 'doula'
+  - title: Cotidiano Gentil
+    url: '6'
+  - title: Histórias inspiradoras
+    url: '2'
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Build settings
+permalink: /:categories/:title
+markdown: redcarpet
+redcarpet:
+  extensions:
+    - :fenced_code_blocks
+    - :superscript
+    - :hard_wrap
+    - :tables
+
+# Development
+host: 0.0.0.0
