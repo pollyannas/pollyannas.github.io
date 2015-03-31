@@ -1,8 +1,0 @@
----
-title: Passageiros gentis
-date: 2014-08-02
----
-
-#Passageiros gentis
-
-Em um belo dia ensolarado peguei o metrô para ir à casa de meu namorado. Estava com tanto sono que acabei cochilando no caminho. Quando as pessoas faziam mais barulho do que o habitual, eu acordava e tentava prestar atenção no que acontecia ao redor, o que durava pouco tempo, e eu logo eu voltava para meus sonhos. Durante uma das vezes em que acordei, vi um um senhor entrar de muletas, demonstrando certa dificuldade para caminhar. Duas mulheres imediatamente levantaram de suas cadeiras e ofereceram seus lugares. Ele não aceitou e eu nem consegui inferir o motivo, porque eu realmente não consegui ficar acordada para prestar mais atenção. Mais tarde, o metrô parou em alguma estação e o senhor, que tentava sair, caiu, provavelmente porque pisou no vão que fica entre a porta do veículo e o piso da estação. Acordei ouvindo o barulho e me assustei muito, ele estava bem próximo de mim. Eu não consegui e nem precisaria reagir: várias pessoas já estavam o acolhendo prontamente. Mais ou menos dez pessoas se dividiam entre as tarefas de tentar levantá-lo, verificar se ele estava bem e tentar fazer com que o condutor não seguisse viagem. A maior parte das pessoas se sensibilizou e tentou ajudá-lo de alguma forma. Depois que ele foi embora, as pessoas, preocupadas, ainda ficaram um tempo tentando pensar em possíveis soluções para que isto não voltasse a acontecer.

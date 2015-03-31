@@ -1,16 +1,12 @@
 # Site settings
 title: Pollyanna Souza
 description: não há considerações gerais a fazer, está tudo aí
-mail: polle626@gmail.com
-sections:
-  - title: A indissociabilidade entre o aprendizado e a vida
-    url: '26'
-  - title: Doula
-    url: 'doula'
-  - title: Cotidiano Gentil
-    url: '6'
-  - title: Histórias inspiradoras
-    url: '2'
+email: polle626@gmail.com
+categories_pretty:
+  a-indissociabilidade-entre-o-aprendizado-e-a-vida: A Indisssociabilidade entre o aprendizado e a vida
+  doula: Doula
+  o-renascimento-do-alexander: O Renascimento do Alexander
+  blog: Lua ignorada
 
 defaults:
   -

@@ -1,10 +1,14 @@
-<div class="h-entry text">
+<div class="h-entry">
 
-    <a hidden class="p-name u-url" href="/{{ page.url }}">{{ page.title }}</a>
+    <header>
+      <h1><a hidden class="p-name u-url" href="/{{ page.url }}">{{ page.title }}</a></h1>
+      <aside>
+        <time class="dt-published">{{ page.date | date: "%b %Y" }}</p>
+      </aside>
+    </header>
 
     <div class="e-content p-content">
       {{ content }}
     </div>
 
-    <time class="dt-published">{{ page.date | date: "%b %Y" }}</p>
 </div>
