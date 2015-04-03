@@ -8,26 +8,22 @@
   
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  
-    <link rel="stylesheet" href="/site.css">
+
+    {% if page.url contains "servicos" %}
+      <link rel="stylesheet" href="/servicos.css">
+    {% else %}
+      <link rel="stylesheet" href="/blog.css">
+    {% endif %}
     <link rel="stylesheet" href="/assets/pygments.css">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml" />
     <script src="/site.js"></script>
 
-    <link rel="openid.delegate" href="http://fiatjaf.alhur.es/" />
-    <link rel="openid.server" href="https://indieauth.com/openid" />
-    <link rel="pgpkey" href="https://keybase.io/fiatjaf/key.asc">
-
-    <link rel="webmention" href="http://jekmentions.alhur.es/webmentions/">
-    <link rel="authorization_endpoint" href="https://indieauth.com/auth">
-    <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
-
   </head>
 
   <body>
 
-    <header>
+    <header role="banner">
     
       <h1>
         <a href="/">{{ site.title }}</a>
@@ -50,7 +46,7 @@
       <p><a href="{{ "/feed.xml" }}">RSS</a></p>
     </aside>
 
-    <footer>
+    <footer role="contentinfo">
     </footer>
 
   </body>
